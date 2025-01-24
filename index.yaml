@@ -3,12 +3,12 @@ entries:
   djangoblog-chart:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-01-24T14:54:56.576240464+08:00"
+    created: "2025-01-24T14:59:47.639188932+08:00"
     description: A Helm chart for djangoblog
     digest: bd7401532413398a2b71b421993d1907875066cd7f7aab5ebdd680a7a9395ed4
     name: djangoblog-chart
     type: application
     urls:
-    - https://banbi95.github.io/helm-chart/mycharts/djangoblog-chart-0.1.0.tgz
+    - https://banbi95.github.io/mycharts/djangoblog-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2025-01-24T14:54:56.570838943+08:00"
+generated: "2025-01-24T14:59:47.620700257+08:00"
