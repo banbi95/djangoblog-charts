@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.34.0 (cbf2835db)
+  labels:
+    io.kompose.service: djangoblog
+  name: djangoblog-svc
+spec:
+  type: {{.Values.djangoblog.service.type}}
+  ports:
+    - name: "8000"
+      port: {{.Values.djangoblog.service.port}}
+      targetPort: {{.Values.djangoblog.service.targetPort}}
+  {{- if .Values.djangoblog.service.nodePort }}
+      nodePort: {{.Values.djangoblog.service.nodePort}}
+  {{- end}}
+  selector:
+    io.kompose.service: djangoblog

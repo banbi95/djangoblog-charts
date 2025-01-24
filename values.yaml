@@ -1,0 +1,115 @@
+# Default values for djangoblog-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+djangoblog:
+  image:
+    repository: "djangoblog"
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  replicas: 1
+
+  persistence:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    storageClass: "nfs-csi"
+    claimName: "djangoblog-pvc"
+    annotations: {}
+    labels: {}
+  config:
+    secretName: "djangoblog-secret"
+
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 8000
+    nodePort: ""
+    annotations: {"example-key","example-value"}
+    labels: {"label-name","label-value"}
+    
+  
+  hpa:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 50
+    # targetMemoryUtilizationPercentage: 80
+
+
+nginx:
+  enabled: true
+  image:
+    repository: "nginx"
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  annnotations: {}
+  replicas: 1
+
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 80
+    nodePort: "30888"
+    annotations: {}
+    labels: {}
+
+  config: {}
+  
+
+
+db:
+  enabled: true
+  image:
+    repository: "mysql"
+    tag: "8.0.30"
+    pullPolicy: IfNotPresent
+  replicas: 1
+  service:
+    type: ClusterIP
+    port: 3306
+    targetPort: 3306
+    nodePort: ""
+    annotations: {}
+    labels: {}
+
+externalDB:
+  enabled: false
+  host: "192.168.244.33"
+  port: 3306
+  database: ""
+   
+
+redis:
+  enabled: true 
+  image:
+    repository: "redis"
+    tag: "6"
+    pullPolicy: IfNotPresent
+  imagePullSecrets: []
+  replicas: 1
+
+
+  redisExporter:
+    enabled: true
+    image:
+      repository: "bitnami/redis-exporter"
+      tag: "1"
+      pullPolicy: IfNotPresent
+    args:
+      - --redis.addr=localhost:6379
+    imagePullSecrets: []
+    replicas: 1
+
+  service:
+    type: ClusterIP
+    port: 6379
+    targetPort: 6379
+    nodePort: ""
+    annotations: {}
+    labels: {}
+
+externalRedis:
+  enabled: false
+    
+
+
