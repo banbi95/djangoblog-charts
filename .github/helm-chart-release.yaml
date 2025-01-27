@@ -14,10 +14,15 @@ jobs:
     # use the prebuilt action checkout@v2 to check out code for following steps
       uses: actions/checkout@v2
 
-     - name: configure git
+    - name: configure git
        run: |
         git config --global user.name "Devin" 
         git config --global user.email "stemm@foxmail.com"
+
+    - name: setup helm
+      uses: azure/setup-helm@v3
+      with:
+        version: v3.12.0
 
     - name : run chart releaser
       uses: helm/chart-releaser-action@v1.6.0
