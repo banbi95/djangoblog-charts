@@ -46,7 +46,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "djangoblog-chart.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "djangoblog-chart.name" . }}
+app.kubernetes.io/name: {{ include "djangoblog-chart.fullname" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 

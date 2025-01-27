@@ -11,4 +11,14 @@ entries:
     urls:
     - https://github.com/banbi95/djangoblog-charts/releases/download/0.1.0/djangoblog-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2025-01-24T14:59:47.620700257+08:00"
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-01-27T13:26:01.776346318+08:00"
+    description: A Helm chart for djangoblog
+    digest: 27f2c894c91eaae23057293bdde244037a559c5d998bc31e068aad817ab68dfc
+    name: djangoblog-chart
+    type: application
+    urls:
+    - https://github.com/banbi95/djangoblog-charts/releases/download/0.1.0/djangoblog-chart-0.1.1.tgz
+    version: 0.1.1
+generated: "2025-01-27T13:26:01.775884853+08:00"

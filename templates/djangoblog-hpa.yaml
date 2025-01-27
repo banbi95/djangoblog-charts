@@ -2,29 +2,31 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: djangoblog-hpa
+  name: "{{ include "djangoblog-chart.fullname" . }}-hpa"
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: djangoblog
-  minReplicas: {{ .Values.djangoblog.hpa.minReplicas}}
-  maxReplicas: {{ .Values.djangoblog.hpa.maxReplicas }}
+  {{- with .Values.djangoblog.hpa }}
+  minReplicas: {{ .minReplicas}}
+  maxReplicas: {{ .maxReplicas }}
   metrics:
-    {{- if.Values.djangoblog.hpa.targetCPUUtilizationPercentage }}
+    {{- if.targetCPUUtilizationPercentage }}
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: {{.Values.djangoblog.hpa.targetCPUUtilizationPercentage}}
+        averageUtilization: {{.targetCPUUtilizationPercentage}}
     {{- end }}
-    {{- if.Values.djangoblog.hpa.targetMemoryUtilizationPercentage }}
+    {{- if.targetMemoryUtilizationPercentage }}
   - type: Resource
     resource:
       name: memory
       target:
         type: Utilization
-        averageUtilization: {{.Values.djangoblog.hpa.targetMemoryUtilizationPercentage}}
+        averageUtilization: {{.targetMemoryUtilizationPercentage}}
     {{- end }}
+  {{- end }}
 {{- end}}

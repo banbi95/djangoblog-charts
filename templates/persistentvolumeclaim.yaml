@@ -3,11 +3,13 @@ kind: PersistentVolumeClaim
 metadata:
   labels:
     io.kompose.service: djangoblog-claim2
-  name: {{.Values.djangoblog.persistence.claimName}}
+    {{- with .Values.djangoblog.persistence }}
+  name: {{.claimName}}
 spec:
   accessModes:
-    - {{ .Values.djangoblog.persistence.accessMode}}
-  storageClassName: {{ .Values.djangoblog.persistence.storageClass }}  # use your storage class name
+    - {{ .accessMode}}
+  storageClassName: {{ .storageClass }}  # use your storage class name
   resources:
     requests:
-      storage: {{.Values.djangoblog.persistence.size }}
+      storage: {{.size }}
+     {{- end }}
