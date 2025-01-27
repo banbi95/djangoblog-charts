@@ -1,0 +1,34 @@
+name: Helm Chart Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+  #  choose ubuntu-latest to run on 
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+    # use the prebuilt action checkout@v2 to check out code for following steps
+      uses: actions/checkout@v2
+
+    - name: configure git
+       run: |
+        git config --global user.name "Devin" 
+        git config --global user.email "stemm@foxmail.com"
+
+    - name: setup helm
+      uses: azure/setup-helm@v3
+      with:
+        version: v3.12.0
+
+    - name : run chart releaser
+      uses: helm/chart-releaser-action@v1.6.0
+      with:
+        charts_dir: ./
+        package_with_index: true
+        pages_branch: gh-pages
+      env:
+        CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
