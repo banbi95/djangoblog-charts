@@ -6,6 +6,7 @@ metadata:
     kompose.version: 1.34.0 (cbf2835db)
     prometheus.io/port: "9113"
     prometheus.io/scrape: "true"
+    {{- include "djangoblog-chart.labels" . | nindent 4 }}
   labels:
     io.kompose.service: nginx
   name: nginx

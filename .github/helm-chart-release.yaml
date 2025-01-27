@@ -15,9 +15,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: configure git
-       run: |
-        git config --global user.name "Devin" 
-        git config --global user.email "stemm@foxmail.com"
+      run: |
+        git config --local user.name "Devin" 
+        git config --local user.email "stemm@foxmail.com"
 
     - name: setup helm
       uses: azure/setup-helm@v3
@@ -28,7 +28,7 @@ jobs:
       uses: helm/chart-releaser-action@v1.6.0
       with:
         charts_dir: ./
-        package_with_index: true
+        packages_with_index: true
         skip_existing: true
         pages_branch: gh-pages
       env:
