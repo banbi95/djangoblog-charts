@@ -13,7 +13,9 @@ spec:
       port: {{.Values.redis.service.port}}
       targetPort: {{.Values.redis.service.targetPort}}
       name: redis
+{{- if .Values.redis.redisExporter.enabled }}
     - protocol: TCP
       port: 9121
       targetPort: 9121
       name: metrics
+{{- end}}
