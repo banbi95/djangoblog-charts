@@ -27,7 +27,8 @@ jobs:
     - name : run chart releaser
       uses: helm/chart-releaser-action@v1.6.0
       with:
-        charts_dir: ./
+      # make sure charts exists in the root directory
+        charts_dir: /
         package_with_index: true
         pages_branch: gh-pages
       env:
