@@ -9,6 +9,6 @@ entries:
     name: djangoblog-chart
     type: application
     urls:
-    - https://banbi95.github.io/mycharts/djangoblog-chart-0.1.0.tgz
+    - https://github.com/banbi95/djangoblog-charts/releases/tag/0.1.0
     version: 0.1.0
 generated: "2025-01-24T14:59:47.620700257+08:00"
