@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  djangoblog-chart:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-02-05T21:47:58.880275787+08:00"
+    description: A Helm chart for djangoblog
+    digest: 21e8c7c1c02ee89c7718a4b8307d4da5d12156961911758a7279ba4a4483df11
+    kubeVersion: '>=1.23.0-0'
+    name: djangoblog-chart
+    type: application
+    urls:
+    - https://github.com/banbi95/djangoblog-charts/releases/download/djangoblog-chart-0.1.2/djangoblog-chart-0.1.2.tgz
+    version: 0.1.2
+generated: "2025-02-05T21:47:58.880320329+08:00"
