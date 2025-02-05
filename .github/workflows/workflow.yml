@@ -13,6 +13,9 @@ jobs:
     - name: Checkout code
     # use the prebuilt action checkout@v2 to check out code for following steps
       uses: actions/checkout@v2
+      # fetch-depth: 0 is required to get the full git history
+      with:
+        fetch-depth: 0
 
     - name: configure git
       run: |
@@ -29,7 +32,7 @@ jobs:
       with:
       # make sure charts exists in the root directory
         charts_dir: .
-        packages_with_index: true
+        packages_with_index: false
         pages_branch: gh-pages
       env:
         CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}

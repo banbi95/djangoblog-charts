@@ -6,6 +6,7 @@ metadata:
     kompose.version: 1.34.0 (cbf2835db)
   labels:
     io.kompose.service: djangoblog
+    {{- include "djangoblog-chart.labels". | nindent 4}}
   name: djangoblog-svc
 spec:
   type: {{.Values.djangoblog.service.type}}
