@@ -31,8 +31,9 @@ jobs:
       uses: helm/chart-releaser-action@v1.6.0
       with:
       # make sure charts exists in the root directory
-        charts_dir: ./
-        packages_with_index: false
+        charts_dir: charts
+        packages_with_index: true
         pages_branch: gh-pages
+        skip_existing: true
       env:
         CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
