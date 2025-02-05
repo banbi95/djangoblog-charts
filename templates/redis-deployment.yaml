@@ -8,6 +8,7 @@ metadata:
     prometheus.io/scrape: "true"
   labels:
     io.kompose.service: redis
+    {{- include "djangoblog.labels" . | nindent 8}}
   name: redis
 spec:
   replicas: {{ .Values.redis.replicas }}
