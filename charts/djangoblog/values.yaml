@@ -1,9 +1,7 @@
-# Default values for djangoblog-chart.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+
+nameSpaceOverride: "default"
 fullnameOverride: "djangoblog"
 nameOverride: "djangoblog"
-
 
 
 djangoblog:
@@ -115,6 +113,8 @@ redis:
 
 externalRedis:
   enabled: false
+
+
     
 
 
