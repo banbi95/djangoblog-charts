@@ -5,10 +5,14 @@ on:
     branches:
       - main
 
+
+permissions: write-all
+
 jobs:
   release:
   #  choose ubuntu-latest to run on 
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
     - name: Checkout code
     # use the prebuilt action checkout@v2 to check out code for following steps
