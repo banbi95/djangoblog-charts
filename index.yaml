@@ -3,6 +3,26 @@ entries:
   djangoblog-chart:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-02-15T15:03:49.037808805Z"
+    dependencies:
+    - condition: mysql.enabled
+      name: mysql
+      repository: file://../mysql
+      version: 11.1.5
+    - condition: redis.enabled
+      name: redis
+      repository: file://../redis
+      version: 17.8.0
+    description: A Helm chart for djangoblog
+    digest: cb573e9e366b1b0fde06481229c581cb0617286268c093c6d99810d6a55705b9
+    kubeVersion: '>=1.23.0-0'
+    name: djangoblog-chart
+    type: application
+    urls:
+    - https://github.com/banbi95/djangoblog-charts/releases/download/djangoblog-chart-0.2.0/djangoblog-chart-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-02-06T05:43:58.723764864Z"
     description: A Helm chart for djangoblog
     digest: 35c044414e996212e7ca187fc1efe6417c1e73011d7df3c6a9f6ecd63ef02d56
@@ -23,4 +43,77 @@ entries:
     urls:
     - https://github.com/banbi95/djangoblog-charts/releases/download/djangoblog-chart-0.1.2/djangoblog-chart-0.1.2.tgz
     version: 0.1.2
-generated: "2025-02-06T05:43:58.723772498Z"
+  mysql:
+  - annotations:
+      category: Database
+      images: |
+        - name: mysql
+          image: docker.io/bitnami/mysql:8.4.0-debian-12-r6
+        - name: mysqld-exporter
+          image: docker.io/bitnami/mysqld-exporter:0.15.1-debian-12-r25
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:12-debian-12-r24
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 8.4.0
+    created: "2025-02-15T15:03:49.138277862Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: MySQL is a fast, reliable, scalable, and easy to use open source
+      relational database system. Designed to handle mission-critical, heavy-load
+      production applications.
+    digest: 617d814ae532a80985505f1bfdf9668b121177b52413239b32ed801d81539fd3
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/mysql/img/mysql-stack-220x234.png
+    keywords:
+    - mysql
+    - database
+    - sql
+    - cluster
+    - high availability
+    maintainers:
+    - name: Broadcom, Inc. All Rights Reserved.
+      url: https://github.com/bitnami/charts
+    name: mysql
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/mysql
+    urls:
+    - https://github.com/banbi95/djangoblog-charts/releases/download/mysql-11.1.5/mysql-11.1.5.tgz
+    version: 11.1.5
+  redis:
+  - annotations:
+      category: Database
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 7.0.8
+    created: "2025-02-15T15:03:49.231541091Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: Redis(R) is an open source, advanced key-value store. It is often
+      referred to as a data structure server since keys can contain strings, hashes,
+      lists, sets and sorted sets.
+    digest: 17a006ed2b48d1141b4056fe9b17fa2b983b1e024521668eb681ad27c295ad55
+    home: https://github.com/bitnami/charts/tree/main/bitnami/redis
+    icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - name: Bitnami
+      url: https://github.com/bitnami/charts
+    name: redis
+    sources:
+    - https://github.com/bitnami/containers/tree/main/bitnami/redis
+    urls:
+    - https://github.com/banbi95/djangoblog-charts/releases/download/redis-17.8.0/redis-17.8.0.tgz
+    version: 17.8.0
+generated: "2025-02-15T15:03:49.231558113Z"
