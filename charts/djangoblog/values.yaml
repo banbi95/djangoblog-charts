@@ -1,26 +1,32 @@
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+  storageClass: ""
+  commonAnnotations: {}
 
-nameSpaceOverride: "default"
 fullnameOverride: "djangoblog"
 nameOverride: "djangoblog"
 
 
 djangoblog:
+  namespaceOverride: "blog"
   image:
-    repository: "djangoblog"
-    tag: "latest"
+    repository: ""  
+    tag: ""
     pullPolicy: IfNotPresent
+    imagePullSecrets: "default"
   replicas: 1
 
   persistence:
     enabled: true
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     size: 1Gi
-    storageClass: "nfs-csi"
+    storageClass: "default"
     claimName: "djangoblog-pvc"
     annotations: {}
     labels: {}
   config:
-    secretName: "djangoblog-secret"
+    secretName: "djangoblog-config-secret"  
 
   service:
     type: ClusterIP
@@ -37,7 +43,7 @@ djangoblog:
     maxReplicas: 10
     targetCPUUtilizationPercentage: 50
     # targetMemoryUtilizationPercentage: 80
-
+  
 
 nginx:
   enabled: true
@@ -60,59 +66,46 @@ nginx:
   
 
 
-db:
+mysql:
   enabled: true
-  image:
-    repository: "mysql"
-    tag: "8.0.30"
-    pullPolicy: IfNotPresent
-  replicas: 1
-  service:
-    type: ClusterIP
-    port: 3306
-    targetPort: 3306
-    nodePort: ""
-    annotations: {}
-    labels: {}
+  global:
+    storageClass: default
+  namespaceOverride: db
+  architecture: standalone
+  auth:
+    rootPassword: "password"
+    createDatabase: true
+    database: "djangoblog"
+    # username: ""
+    # password: ""
+  
+
+
 
 externalDB:
   enabled: false
-  host: "192.168.244.33"
-  port: 3306
-  database: ""
-   
+  host: "examplehost.com"
+
 
 redis:
-  enabled: true 
-  image:
-    repository: "redis"
-    tag: "6"
-    pullPolicy: IfNotPresent
-  imagePullSecrets: []
-  replicas: 1
+  enabled: true
+  global:
+    storageClass: default
+    redis:
+      password: "password"
+  namespaceOverride: default
+  architecture: replication
+  replica: 
+    replicaCount: 3
 
 
-  redisExporter:
-    enabled: true
-    image:
-      repository: "bitnami/redis-exporter"
-      tag: "1"
-      pullPolicy: IfNotPresent
-    args:
-      - --redis.addr=localhost:6379
-    imagePullSecrets: []
-    replicas: 1
 
-  service:
-    type: ClusterIP
-    port: 6379
-    targetPort: 6379
-    nodePort: ""
-    annotations: {}
-    labels: {}
 
-externalRedis:
-  enabled: false
+
+
+
+
+
 
 
     

@@ -8,8 +8,9 @@ metadata:
     prometheus.io/scrape: "true"
     {{- include "djangoblog-chart.labels" . | nindent 4 }}
   labels:
-    io.kompose.service: nginx
+    io.kompose.service: "nginx"
   name: nginx
+  namespace: {{.Values.djangoblog.namespaceOverride}}
 spec:
   replicas: 1
   selector:
@@ -30,6 +31,7 @@ spec:
     spec:
       containers:
         - image: nginx:stable   # use a stable version
+          imagePullPolicy: IfNotPresent
           name: nginx
           volumeMounts:
             - mountPath: /etc/nginx/nginx.conf
@@ -61,6 +63,7 @@ spec:
              successThreshold: 1  
         - name: nginx-exporter
           image: nginx/nginx-prometheus-exporter:1.0
+          imagePullPolicy: IfNotPresent
           args:
            - "-nginx.scrape-uri=http://127.0.0.1:80/basic_status"
           resources:

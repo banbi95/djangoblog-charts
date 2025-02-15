@@ -3,6 +3,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: "{{ include "djangoblog-chart.fullname" . }}-hpa"
+  namespace: {{.Values.djangoblog.namespaceOverride}}
   labels:
     {{- include "djangoblog-chart.labels" . | nindent 4 }}
 spec:

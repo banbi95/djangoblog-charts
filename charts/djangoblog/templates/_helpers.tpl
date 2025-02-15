@@ -60,3 +60,29 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "djangoblog-chart.mysqlHost" -}}
+{{- if .Values.mysql.enabled }}
+{{- if eq .Values.mysql.architecture "standalone" }}
+{{ printf "%s-mysql.%s.svc.cluster.local" .Release.Name .Values.mysql.namespaceOverride |trimPrefix "\n" }}
+{{- else if  eq .Values.mysql.architecture  "replication" }}
+{{ printf "%s-mysql-master.%s.svc.cluster.local" .Release.Name .Values.mysql.namespaceOverride |trimPrefix "\n" }}
+# default use djangoblog-mysql-db.svc.cluster.local
+{{- else }}
+{{ printf "%s-mysql.db.svc.cluster.local" .Release.Name | trimPrefix "\n" }}
+{{- end }}
+{{- else if .Values.exetanlDB.enabled }}
+{{  .Values.externalDB.host }}
+{{- end }}
+{{- end }}
+
+
+{{- define "djangoblog-chart.redisHost" -}}
+{{- if eq .Values.redis.architecture "standalone" }}
+{{ printf "%s-redis.%s.svc.cluster.local" .Release.Name .Values.redis.namespaceOverride | trim }}
+{{- else if eq .Values.redis.architecture "replication" }}
+{{ printf "%s-redis-master.%s.svc.cluster.local" .Release.Name .Values.redis.namespaceOverride |trim }}
+{{- else }}
+{{ printf "%s-redis.default.svc.cluster.local" .Release.Name | trim}}
+{{- end }}
+{{- end }}

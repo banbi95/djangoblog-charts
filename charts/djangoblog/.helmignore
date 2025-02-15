@@ -22,3 +22,4 @@
 *.tmproj
 .vscode/
 /reference/
+cmds.sh

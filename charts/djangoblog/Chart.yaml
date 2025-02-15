@@ -24,3 +24,15 @@ version: "0.1.4"
 appVersion: "1.0.0"
 kubeVersion: ">=1.23.0-0"
 
+dependencies:
+  - name: mysql # match the chart name defined in subchart
+    version: 11.1.5
+    repository: "file://../mysql"
+    condition: mysql.enabled
+  - name: redis #  match the chart name defined in subchart
+    version: 17.8.0
+    repository: "file://../redis"
+    condition: redis.enabled
+
+
+

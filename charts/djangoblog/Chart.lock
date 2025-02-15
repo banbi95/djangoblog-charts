@@ -1,0 +1,9 @@
+dependencies:
+- name: mysql
+  repository: file://../mysql
+  version: 11.1.5
+- name: redis
+  repository: file://../redis
+  version: 17.8.0
+digest: sha256:81d2cf49a731495f5426d49651544bd39996375f04c88b2e33aae7514b0d4059
+generated: "2025-02-15T20:23:58.736819539+08:00"

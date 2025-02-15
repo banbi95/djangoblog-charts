@@ -1,10 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  namespace: {{ .Values.djangoblog.namespaceOverride }}
   labels:
-    io.kompose.service: djangoblog-claim2
+    io.kompose.service: "djangoblog-claim2"
     {{- with .Values.djangoblog.persistence }}
   name: {{.claimName}}
+  
 spec:
   accessModes:
     - {{ .accessMode}}
