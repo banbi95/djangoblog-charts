@@ -11,7 +11,7 @@ This repository contains Helm charts for deploying DjangoBlog, a blog applicatio
 
 ### 1  Add the Helm repository:
 ```bash
-helm repo add djangoblog-charts https://banbi95.github.io/djangoblog-charts 
+helm repo add djangoblog  https://banbi95.github.io/djangoblog-charts 
 helm repo update
 ```
 ### 2 Install the chart with default conf and latest version:
@@ -21,9 +21,8 @@ helm install my-djangoblog djangoblog-charts/djangoblog
 ### 3  Install with custom configuration（recommended）
 #### 3.1 pull charts to local:
    ```bash
-   helm search repo -l djangoblog 
-   helm pull djangoblog-charts/djangoblog --version 0.1.x --untar
-   helm install my-djangoblog djangoblog-charts/djangoblog --versions 0.1.x -f custom-values.yaml
+   helm search repo djangoblog  -l
+   helm pull djangoblog/djangoblog-chart --version 0.2.0 --untar
 ```
 #### 3.2 edit values under charts/djangoblog/values.yaml, these values will override values of subcharts mysql and redis 
 ```yaml
@@ -32,9 +31,9 @@ helm install my-djangoblog djangoblog-charts/djangoblog
 ```
 #### 3.3 installation and upgarde
    ```bash
-helm install my-djangoblog ./charts/djangoblog/  -f charts/djangoblog/values.yaml --debug --dry-run
-helm install my-djangoblog ./charts/djangoblog/  -f charts/djangoblog/values.yaml --debug  
-helm upgrade my-djangoblog ./charts/djangoblog/  -f charts/djangoblog/values.yaml --debug
+helm install mydjangoblog ./charts/djangoblog/  -f charts/djangoblog/values.yaml --debug --dry-run
+helm install mydjangoblog ./charts/djangoblog/  -f charts/djangoblog/values.yaml --debug  
+helm upgrade mydjangoblog ./charts/djangoblog/  -f charts/djangoblog/values.yaml --debug
 
 
 
